@@ -101,38 +101,38 @@ rms_norm_eps: 1e-5
 
 **One parameter per hidden dimension (hidden_size)**
 
-**Two normalizations per layer → 576 × 2 = **1,152** parameters
+        Two normalizations per layer → 576 × 2 = **1,152** parameters
 
 ### Total Parameters per Decoder Layer
 
-**Attention Layer: 1,327,104**
+        Attention Layer: **1,327,104**
 
-**MLP Layer: 1,769,472**
+        MLP Layer: **1,769,472**
 
-**Layer Normalization: 1,152**
+        Layer Normalization: **1,152**
 
-**Total: 3,097,728 parameters per layer**
+        Total: **3,097,728** parameters per layer
 
 ### Total Model Parameters
 
 **With 30 decoder layers:**
 
-30 × 3,097,728 = **92,931,840** parameters
+        30 × 3,097,728 = **92,931,840** parameters
 
 ### Additional Components
 
 **Word Embeddings:**
 
-vocab_size × hidden_size → 49152 × 576 = **28,311,552**
+        vocab_size × hidden_size → 49152 × 576 = **28,311,552**
 
-**Final Layer Norm:** **576** parameters
+        Final Layer Norm: **576** parameters
 
 ### Final Parameter Count
 
-**Decoder Layers: 106,931,840**
+        Decoder Layers: **106,931,840**
 
-**Word Embeddings: 28,311,552**
+        Word Embeddings: **28,311,552**
 
-**Final Norm: 576**
+        Final Norm: **576**
 
 **Total SmolLM2 Model Parameters: 135,243,968 (~135M)**
