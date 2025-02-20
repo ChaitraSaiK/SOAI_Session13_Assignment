@@ -52,9 +52,9 @@ logger.info("="*50 + "\n")
 config = SmolLM2Config()
 model = SmolLM2ForCausalLM(config)
 
-# Use the SmolLM2 tokenizer
+ # Using the SmolLM2 tokenizer
 tokenizer = AutoTokenizer.from_pretrained(
-    "HuggingFaceTB/SmolLM2-360M-Instruct",  # Using the SmolLM2 tokenizer
+    "HuggingFaceTB/SmolLM2-360M-Instruct", 
     trust_remote_code=True
 )
 

@@ -90,7 +90,7 @@ class SmolLM2Attention(nn.Module):
         self.v_proj = nn.Linear(self.hidden_size, self.num_heads * self.head_dim, bias=False)
         self.o_proj = nn.Linear(self.hidden_size, self.hidden_size, bias=False)
 
-        # Try to import flash attention, but don't fail if not available
+        # Import flash attention, if available
         self.flash_attn = None
         self.use_flash_attention = False
         if config.use_flash_attention_2:
