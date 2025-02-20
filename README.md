@@ -33,7 +33,7 @@ rms_norm_eps: 1e-5
 
         Computes and caches sinusoidal embeddings for better contextual understanding in attention mechanisms.
 
-- Attention Mechanism (SmolLM2Attention)
+- **Attention Mechanism (SmolLM2Attention)**
 
         Implements multi-head self-attention using:
 
@@ -64,6 +64,8 @@ rms_norm_eps: 1e-5
         Feedforward block.
 
         Layer normalizations before and after attention.
+
+
 
 ## Parameter Calculation
 
@@ -136,5 +138,11 @@ rms_norm_eps: 1e-5
         Final Norm: **576**
 
 **Total SmolLM2 Model Parameters: 135,243,968 (~135M)**
+
+
+## Saving model weights:
+
+This demo model is trained for 5000 steps currently. For better performance, we can train the model for more steps. This model training is written in such a way that it saves checkpoints every 500 steps and also predicts what the model is uttering.
+
 
 
