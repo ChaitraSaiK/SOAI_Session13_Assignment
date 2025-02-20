@@ -1,5 +1,10 @@
 # SmolLM2 Model
 
+[![Model](https://img.shields.io/badge/Model-SmolLM2-blue)](https://github.com/SOAI_Session13_Assignment)
+[![Type](https://img.shields.io/badge/Type-LLM-green)](https://github.com/SOAI_Session13_Assignment)
+[![Parameters](https://img.shields.io/badge/Parameters-135M-orange)](https://github.com/SOAI_Session13_Assignment)
+[![Platform](https://img.shields.io/badge/Platform-Hugging%20Face-yellow)](https://huggingface.co)
+
 The SmolLM2 model is a lightweight transformer-based architecture designed for efficient language modeling. Below is a breakdown of its main components:
 
 ## Configuration (SmolLM2Config)
@@ -24,110 +29,110 @@ rms_norm_eps: 1e-5
 
 ## Key Components
 
-- Rotary Positional Embeddings (LlamaRotaryEmbedding)
+- **Rotary Positional Embeddings (LlamaRotaryEmbedding)**
 
-Computes and caches sinusoidal embeddings for better contextual understanding in attention mechanisms.
+        Computes and caches sinusoidal embeddings for better contextual understanding in attention mechanisms.
 
 - Attention Mechanism (SmolLM2Attention)
 
-Implements multi-head self-attention using:
+        Implements multi-head self-attention using:
 
-Query (q_proj), Key (k_proj), and Value (v_proj) projection layers.
+        Query (q_proj), Key (k_proj), and Value (v_proj) projection layers.
 
-Optional FlashAttention support for efficient computation.
+        Optional FlashAttention support for efficient computation.
 
-- Feedforward Network (SmolLM2MLP)
+- **Feedforward Network (SmolLM2MLP)**
 
-Uses:
+        Uses:
 
-Gated linear unit (gate_proj).
+        Gated linear unit (gate_proj).
 
-Upsampling and downsampling layers (up_proj and down_proj).
+        Upsampling and downsampling layers (up_proj and down_proj).
 
-SiLU activation function.
+        SiLU activation function.
 
-- Layer Normalization (SmolLM2RMSNorm)
+- **Layer Normalization (SmolLM2RMSNorm)**
 
-Applies Root Mean Square Layer Normalization (RMSNorm) to stabilize training.
+        Applies Root Mean Square Layer Normalization (RMSNorm) to stabilize training.
 
-- Decoder Layer (SmolLM2DecoderLayer)
+- **Decoder Layer (SmolLM2DecoderLayer)**
 
-Each decoder layer consists of:
+        Each decoder layer consists of:
 
-Self-attention block.
+        Self-attention block.
 
-Feedforward block.
+        Feedforward block.
 
-Layer normalizations before and after attention.
+        Layer normalizations before and after attention.
 
-Parameter Calculation
+## Parameter Calculation
 
-Attention Layer Parameters
+### Attention Layer Parameters
 
-Each attention layer contains:
+**Each attention layer contains:**
 
-Query, Key, and Value projections:
+- Query, Key, and Value projections:
 
-hidden_size * hidden_size per projection → 576 × 576 = 331,776
+        hidden_size * hidden_size per projection → 576 × 576 = **331,776**
 
-3 projections → 995,328 parameters
+        3 projections → **995,328** parameters
 
-Output projection:
+- Output projection:
 
-hidden_size * hidden_size → 331,776 parameters
+        hidden_size * hidden_size → **331,776** parameters
 
-Total per attention layer: 1,327,104 parameters
+        Total per attention layer: **1,327,104** parameters
 
-MLP Layer Parameters
+### MLP Layer Parameters
 
-Gate and up projection:
+**Each MLP layer contains:**
 
-hidden_size × intermediate_size → 576 × 1536 = 884,736
+- Gate and up projection:
 
-Down projection:
+        hidden_size × intermediate_size → 576 × 1536 = **884,736**
 
-intermediate_size × hidden_size → 1536 × 576 = 884,736
+- Down projection:
 
-Total per MLP layer: 1,769,472 parameters
+        intermediate_size × hidden_size → 1536 × 576 = **884,736**
 
-Layer Normalization Parameters
+        Total per MLP layer: **1,769,472** parameters
 
-One parameter per hidden dimension (hidden_size)
+### Layer Normalization Parameters
 
-Two normalizations per layer → 576 × 2 = 1,152 parameters
+**One parameter per hidden dimension (hidden_size)**
 
-Total Parameters per Decoder Layer
+**Two normalizations per layer → 576 × 2 = **1,152** parameters
 
-Attention Layer: 1,327,104
+### Total Parameters per Decoder Layer
 
-MLP Layer: 1,769,472
+**Attention Layer: 1,327,104**
 
-Layer Normalization: 1,152
+**MLP Layer: 1,769,472**
 
-Total: 3,097,728 parameters per layer
+**Layer Normalization: 1,152**
 
-Total Model Parameters
+**Total: 3,097,728 parameters per layer**
 
-With 30 decoder layers:
+### Total Model Parameters
 
-30 × 3,097,728 = 92,931,840 parameters
+**With 30 decoder layers:**
 
-Additional Components
+30 × 3,097,728 = **92,931,840** parameters
 
-Word Embeddings:
+### Additional Components
 
-vocab_size × hidden_size → 49152 × 576 = 28,311,552
+**Word Embeddings:**
 
-Final Layer Norm:
+vocab_size × hidden_size → 49152 × 576 = **28,311,552**
 
-576 parameters
+**Final Layer Norm:** **576** parameters
 
-Final Parameter Count
+### Final Parameter Count
 
-Decoder Layers: 92,931,840
+**Decoder Layers: 106,931,840**
 
-Word Embeddings: 28,311,552
+**Word Embeddings: 28,311,552**
 
-Final Norm: 576
+**Final Norm: 576**
 
-Total SmolLM2 Model Parameters: 121,243,968 (~121M)
+**Total SmolLM2 Model Parameters: 135,243,968 (~135M)**
